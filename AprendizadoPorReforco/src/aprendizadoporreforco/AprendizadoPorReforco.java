@@ -33,8 +33,9 @@ public class AprendizadoPorReforco {
             switch (operador) {
                 case 1:
                     metodos.aprender();
-                    System.out.println("Total de Exploracoes: " + metodos.TotalExplorar);
-                    System.out.println("Total de Vezes que Usufruiu: " + metodos.TotalUsufruir);
+                    System.out.println("Total de Exploracoes: " + metodos.totalExplorar);
+                    System.out.println("Total de Vezes que Usufruiu: " + metodos.totalUsufruir);
+                    System.out.println("Total de Vezes que só Tinha uma Unica Acao: " + metodos.unicaEscolha);
                     ok = true;
                     break;
                 case 2:

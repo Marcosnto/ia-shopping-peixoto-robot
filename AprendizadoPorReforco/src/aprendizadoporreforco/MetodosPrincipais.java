@@ -43,24 +43,26 @@ public class MetodosPrincipais {
     //utilizada para decidir entre Usufruir ou Explorar
     public static ArrayList decisao = new ArrayList<Integer>();
     //utilizada para saber o Total de vezes que Houve de Exploração
-    public static int TotalExplorar = 0;
+    public static int totalExplorar = 0;
     //utilizada para saber o Total de vezes que Usufruiu
-    public static int TotalUsufruir = 0;
+    public static int totalUsufruir = 0;
+    //utilizada para saber o Total de vezes que o estado so tinha uma unica acao
+    public static int unicaEscolha = 0;
 
     //método utilizado para executar os metodos necessarios para aprendizado
-    public static void aprender()throws IOException{
+    public static void aprender() throws IOException {
         lerEstados();
         lerAcoes();
         System.out.println("INICIALIZADO APRENDIZADO");
-        for (int i = 0; i < estados.length; i++) {
+        for (int i = 0; i < TAMANHO; i++) {
             atualizarRecompensa(i);
-            aprendizado(5000, i); //quantas vezes vai rodar e quem é o destino            
+            aprendizado(50000, i); //quantas vezes tem que chegar ao objetivo e quem é ele  
         }
         System.out.println("FINALIZADO");
     }
-    
+
     //método utilizado para mostrar o caminho de um ponto origem até um ponto de destino
-    public static String caminho(int destino, int origem) throws IOException {
+    public static String caminho(int origem,int destino) throws IOException {
         //ler o arquivo correspondente ao ponto de destino
         lerArquivo(destino);
         String caminho = "";
@@ -88,6 +90,15 @@ public class MetodosPrincipais {
         }
     }
 
+    //método para zerar os valores das aoes
+    public static void zerarTabela() {
+        for (int l = 0; l < TAMANHO; l++) {
+            for (int c = 0; c < 8; c++) {
+                tabela[l][c].setValorAcao(0);
+            }
+        }
+    }
+
     //método para alocar o valor da recompensa do estado destino e atualizar, para 0
     //o valor da recompensa do estado destino anterior
     public static void atualizarRecompensa(int destino) {
@@ -95,32 +106,34 @@ public class MetodosPrincipais {
         if (destino > 0) {
             estados[destino - 1].setRecompensa(0); //o estado anterior deixa de ter recompensa
         }
+        zerarTabela(); //para limpar os dados adiquiridos anteriormente
     }
 
     //método que realiza o aprendizado de todos os pontos para um ponto de destino especifico
     //e chama ao final o método para gravar o resultado em um arquivo
     public static void aprendizado(int totalVezes, int destino) throws IOException {
-        TotalUsufruir = 0;
-        TotalExplorar = 0;
+        totalUsufruir = 0;
+        totalExplorar = 0;
         int x = 0;
         Random seleciona = new Random();
         int estadoAtual;
-        while (x < totalVezes) { //para parar quando chegar ao fim no totalVezes
-            do {
-                estadoAtual = seleciona.nextInt(TAMANHO); //Escolhe o estado aleatoriamente
+        while (x < totalVezes) { //para parar quando chegar ao fim no totalVezes            
+            estadoAtual = seleciona.nextInt(TAMANHO); //Escolhe o estado aleatoriamente
+            while (estadoAtual != destino) {
                 int proximoEstado = -1; //os pra inicializar           
                 int acao;
                 if (totalAcao(estadoAtual) == 1) { //pra chegar/sair so tem uma acao
                     acao = retornarAcao(estadoAtual);
                     proximoEstado = tabela[estadoAtual][acao].getEstado();
+                    unicaEscolha++;
                 } else {
                     int decisao = escolha(); //escolher se vai usufruir ou explorar
                     if (decisao < 30) {  // vai usufruir
                         acao = maiorValorAcao(estadoAtual);
                         proximoEstado = tabela[estadoAtual][acao].getEstado();
-                        TotalUsufruir++;
+                        totalUsufruir++;
                     } else { //Vai explorar
-                        TotalExplorar++;
+                        totalExplorar++;
                         acao = seleciona.nextInt(8);
                         boolean ok = true;
                         while (ok) {
@@ -137,8 +150,7 @@ public class MetodosPrincipais {
                 double recAt = estados[proximoEstado].getRecompensa() + (0.9 * (maiorValor(proximoEstado))); //Q-Learning                
                 tabela[estadoAtual][acao].setValorAcao(recAt);
                 estadoAtual = proximoEstado;
-            } while (estadoAtual != destino); //estado final
-            estadoAtual = seleciona.nextInt(TAMANHO); //escolhe outro ponto de partida aleatorio entre os 3 estados
+            }
             x++;
         }
         gravarArquivo(destino);
@@ -220,7 +232,7 @@ public class MetodosPrincipais {
         System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
         System.out.println("");
         for (int i = 0; i < tabela.length; i++) {
-            System.out.printf("%-10s", i);
+            System.out.printf("%-10s", estados[i].getNome());
             for (int j = 0; j < tabela[0].length; j++) {
                 if (j == 0) {
                     System.out.printf("%-10s%-10s%-10s", "Esquerda", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
@@ -366,20 +378,24 @@ public class MetodosPrincipais {
         for (int i = 0; i < estados.length; i++) {
             percorrer.add(i);
         }
+        int ponto = TAMANHO-1;
         String percurso = "";
         Collections.shuffle(percorrer); //embaralha        
         //Escolhe o inicio : origem
-        int origem = (int) percorrer.get(percorrer.size() - 1);
-        //Escolhe o inicio : destino
-        int destino = (int) percorrer.get(percorrer.size() - 2);
-        percorrer.remove(percorrer.size() - 1); //Remove a origem da lista para não iniciar novamente do mesmo ponto
-        do {
-            percurso = percurso + " " + caminho(destino, origem);           
+        int origem = (int) percorrer.get(ponto);
+        ponto--;
+        //Escolhe o objetivo : destino
+        int destino = (int) percorrer.get(ponto);
+        ponto--;
+        percurso = percurso + " " + caminho( origem , destino);   
+        System.out.println("++"+ ponto);
+        while (ponto !=-1) {
             origem = destino;
-            Collections.shuffle(percorrer); //embaralha
-            destino = (int) percorrer.get(percorrer.size() - 1);
-            percorrer.remove(percorrer.size() - 1); //Remove a origem da lista para não iniciar novamente do mesmo ponto
-        } while (!percorrer.isEmpty());
-        System.out.println("Percurso Gerado : "+percurso);
+            destino = (int) percorrer.get(ponto);             
+            Collections.shuffle(percorrer); //embaralha 
+            ponto--;
+            percurso = percurso + " " + caminho(origem, destino);
+        }
+        System.out.println("Percurso Gerado : " + percurso);
     }
 }
