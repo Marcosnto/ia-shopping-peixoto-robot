@@ -24,22 +24,18 @@ import java.util.Random;
 
 public class MetodosPrincipais {
 
-    //Constantes
-    //utilizada para saber a quantidade de estados do arquivo
-    public static int TAMANHO = 13;
-    //utilizada para para armazenar o nome do arquivo de estados que será utilizado
-    public static String ESTADOS = "Estados1.txt";
-    //utilizada para armazenar o nome do arquivo que contém as ações correspondentes as cada estado
-    public static String ACOES = "Acoes1.txt";
-    //utilizada para armazenar o nome do arquivo que irá conter o aprendizado (a parte inicial)
-    public static String ARQUIVO = "ArquivoExterno";
-
+ 
+    //utilizada para saber a quantidade de estados 
+    public static int TOTALESTADOS = 13;    
+    //utilizada para saber a quantidade de estados 
+    public static int TOTALACOES = 4;
     //utilizada para salvar os estados : nome, valor, e Recompensa.
-    public static Estado estados[] = new Estado[TAMANHO];
-    //utilizada para salvar os valores das acoes
-    public static int acoes[] = new int[8];
+    public static Estado estados[] = new Estado[TOTALESTADOS];
+    
     //utilizada para salvar os valores das acoes de cada estado
-    public static Dado tabela[][] = new Dado[TAMANHO][8];
+    public static Dado tabela[][] = new Dado[TOTALESTADOS][TOTALACOES ];    
+    /*as ações são respectivamente:  0 = Esquerda; 1= Direita; 2= Cima; 3=Baixo */
+
     //utilizada para decidir entre Usufruir ou Explorar
     public static ArrayList decisao = new ArrayList<Integer>();
     //utilizada para saber o Total de vezes que Houve de Exploração
@@ -49,14 +45,15 @@ public class MetodosPrincipais {
     //utilizada para saber o Total de vezes que o estado so tinha uma unica acao
     public static int unicaEscolha = 0;
 
-    //método utilizado para executar os metodos necessarios para aprendizado
+    //método utilizado para executar os metodos necessarios para o aprendizado
     public static void aprender() throws IOException {
         lerEstados();
         lerAcoes();
         System.out.println("INICIALIZADO APRENDIZADO");
-        for (int i = 0; i < TAMANHO; i++) {
+        for (int i = 0; i < TOTALESTADOS; i++) {
             atualizarRecompensa(i);
-            aprendizado(50000, i); //quantas vezes tem que chegar ao objetivo e quem é ele  
+            aprendizado(i); //o objetivo  
+            System.out.println(".");
         }
         System.out.println("FINALIZADO");
     }
@@ -69,7 +66,7 @@ public class MetodosPrincipais {
         while (origem != destino) {
             int estadoAux = -1;
             double maior = -1;
-            for (int i = 0; i < acoes.length; i++) {
+            for (int i = 0; i < TOTALACOES; i++) {
                 if (tabela[origem][i].getValorAcao() > maior && tabela[origem][i].getEstado() != -1) {
                     maior = tabela[origem][i].getValorAcao();
                     estadoAux = tabela[origem][i].getEstado();
@@ -81,25 +78,16 @@ public class MetodosPrincipais {
         return caminho + estados[destino].getNome();
     }
 
-    //método para inicializar a Tabela
-    public static void inicializarTabela() {
-        for (int l = 0; l < TAMANHO; l++) {
-            for (int c = 0; c < 8; c++) {
-                tabela[l][c] = new Dado(0, 0);
-            }
-        }
-    }
-
     //método para zerar os valores das aoes
     public static void zerarTabela() {
-        for (int l = 0; l < TAMANHO; l++) {
-            for (int c = 0; c < 8; c++) {
+        for (int l = 0; l < TOTALESTADOS; l++) {
+            for (int c = 0; c < TOTALACOES ; c++) {
                 tabela[l][c].setValorAcao(0);
             }
         }
     }
 
-    //método para alocar o valor da recompensa do estado destino e atualizar, para 0
+    //método para alocar o valor da recompensa do estado destino e atualizar para 0
     //o valor da recompensa do estado destino anterior
     public static void atualizarRecompensa(int destino) {
         estados[destino].setRecompensa(10);
@@ -111,38 +99,38 @@ public class MetodosPrincipais {
 
     //método que realiza o aprendizado de todos os pontos para um ponto de destino especifico
     //e chama ao final o método para gravar o resultado em um arquivo
-    public static void aprendizado(int totalVezes, int destino) throws IOException {
+    public static void aprendizado(int destino) throws IOException {
         totalUsufruir = 0;
         totalExplorar = 0;
         int x = 0;
         Random seleciona = new Random();
         int estadoAtual;
-        while (x < totalVezes) { //para parar quando chegar ao fim no totalVezes            
-            estadoAtual = seleciona.nextInt(TAMANHO); //Escolhe o estado aleatoriamente
+        while (x < 50000) { //enquanto eu não chegar o total de vezes ao destino            
+            estadoAtual = seleciona.nextInt(TOTALESTADOS); //Escolhe o estado aleatoriamente
             while (estadoAtual != destino) {
-                int proximoEstado = -1; //os pra inicializar           
+                int proximoEstado = -1;          
                 int acao;
-                if (totalAcao(estadoAtual) == 1) { //pra chegar/sair so tem uma acao
+                if (totalAcao(estadoAtual) == 1) { //verifica se pra chegar/sair desse estado se só tem uma acao
                     acao = retornarAcao(estadoAtual);
                     proximoEstado = tabela[estadoAtual][acao].getEstado();
                     unicaEscolha++;
                 } else {
                     int decisao = escolha(); //escolher se vai usufruir ou explorar
-                    if (decisao < 30) {  // vai usufruir
+                    if (decisao < 30) {  // se o valor for menor vai usufruir
                         acao = maiorValorAcao(estadoAtual);
                         proximoEstado = tabela[estadoAtual][acao].getEstado();
                         totalUsufruir++;
-                    } else { //Vai explorar
+                    } else { // se for maior igual a 30 vai explorar
                         totalExplorar++;
-                        acao = seleciona.nextInt(8);
+                        acao = seleciona.nextInt(TOTALACOES ); //escolhe a ação aleatoriamente 
                         boolean ok = true;
                         while (ok) {
                             Dado d = tabela[estadoAtual][acao];
-                            if (d.getEstado() != -1) { //se existe estado pra essa acao a partir deste estado 
+                            if (d.getEstado() != -1) { //se existe estado pra essa acao a partir do estado atual 
                                 ok = false;
                                 proximoEstado = d.getEstado();
                             } else {
-                                acao = seleciona.nextInt(8); //Escolhe a Ação  aleatoria  
+                                acao = seleciona.nextInt(TOTALACOES ); //escolhe a ação aleatoriamente  
                             }
                         }
                     }
@@ -173,7 +161,7 @@ public class MetodosPrincipais {
     //método para retornar o maior valor dentre os valores das acoes de um determinado estado
     public static double maiorValor(int estado) {
         double maior = tabela[estado][0].valorAcao;
-        for (int i = 1; i < acoes.length; i++) {
+        for (int i = 1; i < TOTALACOES ;i++) {
             if (tabela[estado][i].getValorAcao() >= maior) {
                 maior = tabela[estado][i].getValorAcao();
             }
@@ -183,7 +171,7 @@ public class MetodosPrincipais {
 
     //método utilizado pra saber qual a única acao que um determinado estado apresenta
     public static int retornarAcao(int estado) {
-        for (int i = 0; i < acoes.length; i++) {
+        for (int i = 0; i < TOTALACOES ;i++) {
             if (tabela[estado][i].getEstado() != -1) { // se tem essa acao pro estado atual o proximo estado é diferente de -1
                 return i;
             }
@@ -195,7 +183,7 @@ public class MetodosPrincipais {
     //quantas acoes tenho a partir de um dado estado
     public static int totalAcao(int estado) {
         int total = 0;
-        for (int i = 0; i < acoes.length; i++) {
+        for (int i = 0; i < TOTALACOES; i++) {
             if (tabela[estado][i].getEstado() != -1) { // se tem essa acao pro estado atual o proximo estado é diferente de -1
                 total++;
             }
@@ -207,7 +195,7 @@ public class MetodosPrincipais {
     public static int maiorValorAcao(int estado) {
         int acao = -1;
         double maior = -1;
-        for (int i = 0; i < acoes.length; i++) {
+        for (int i = 0; i < TOTALACOES;i++) {
             if (tabela[estado][i].getEstado() != -1) { // se tem essa acao pro estado atual o proximo estado é diferente de -1
                 if (tabela[estado][i].getValorAcao() > maior) {
                     maior = tabela[estado][i].getValorAcao();
@@ -226,14 +214,10 @@ public class MetodosPrincipais {
         System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
         System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
         System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-        System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-        System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-        System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-        System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
         System.out.println("");
-        for (int i = 0; i < tabela.length; i++) {
+        for (int i = 0; i < TOTALESTADOS; i++) {
             System.out.printf("%-10s", estados[i].getNome());
-            for (int j = 0; j < tabela[0].length; j++) {
+            for (int j = 0; j < TOTALACOES ; j++) {
                 if (j == 0) {
                     System.out.printf("%-10s%-10s%-10s", "Esquerda", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                 } else if (j == 1) {
@@ -242,14 +226,6 @@ public class MetodosPrincipais {
                     System.out.printf("%-10s%-10s%-10s", "Cima", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                 } else if (j == 3) {
                     System.out.printf("%-10s%-10s%-10s", "Baixo", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
-                } else if (j == 4) {
-                    System.out.printf("%-10s%-10s%-10s", "L.E.C.", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
-                } else if (j == 5) {
-                    System.out.printf("%-10s%-10s%-10s", "L.E.B.", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
-                } else if (j == 6) {
-                    System.out.printf("%-10s%-10s%-10s", "L.D.C.", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
-                } else {
-                    System.out.printf("%-10s%-10s%-10s", "L.D.B.", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                 }
             }
             System.out.println("");
@@ -259,13 +235,13 @@ public class MetodosPrincipais {
     //método que irá gravar os dados do aprendizado de todos os estados para um estado(destino) 
     //informacoes adquiridas em tabela
     public static void gravarArquivo(int estado) throws FileNotFoundException, IOException {
-        String arquivo = ARQUIVO + estado + ".txt";
+        String arquivo = "Arquivo" + estado + ".txt";
         File f = new File(arquivo);
         try {
             FileWriter fw = new FileWriter(f);
             PrintWriter pw = new PrintWriter(fw);
-            for (int i = 0; i < tabela.length; i++) {
-                for (int j = 0; j < tabela[0].length; j++) {
+            for (int i = 0; i < TOTALESTADOS; i++) {
+                for (int j = 0; j < TOTALACOES ; j++) {
                     pw.print(tabela[i][j].getEstado() + ";");//estado para o qual  vai
                     pw.print(tabela[i][j].getValorAcao() + ";");//valor da acao
                 }
@@ -281,7 +257,7 @@ public class MetodosPrincipais {
     //método utilizado para ler o arquivo de um estado e passar as informacoes para a tabela
     //que será utilizada para encontrar o caminho de um estado qualquer para esse especifico(destino).
     public static void lerArquivo(int destino) throws FileNotFoundException, IOException {
-        String arquivo = ARQUIVO + destino + ".txt";
+        String arquivo = "Arquivo" + destino + ".txt";
         try {
             FileReader fr = new FileReader(arquivo);
             BufferedReader br = new BufferedReader(fr);
@@ -311,7 +287,7 @@ public class MetodosPrincipais {
     //método para carregar o arquivo de estados que serão utilizados no aprendizado
     public static void lerEstados() throws FileNotFoundException, IOException {
         try {
-            FileReader fr = new FileReader(ESTADOS);
+            FileReader fr = new FileReader("Estados.txt");
             BufferedReader br = new BufferedReader(fr);
             String ExpressaoRegular = "[;|]";
             String linha;
@@ -330,7 +306,7 @@ public class MetodosPrincipais {
     //que serão utilizados no aprendizado
     public static void lerAcoes() throws FileNotFoundException, IOException {
         try {
-            FileReader fr = new FileReader(ACOES);
+            FileReader fr = new FileReader("Acoes.txt");
             BufferedReader br = new BufferedReader(fr);
             String ExpressaoRegular = "[;|]";
             String linha;
@@ -355,7 +331,7 @@ public class MetodosPrincipais {
 
     //método para retornar valor do estado, o identificador dele
     public static int retornarValorEstado(String nome) throws IOException {
-        for (int i = 0; i < estados.length; i++) {
+        for (int i = 0; i < TOTALESTADOS; i++) {
             if (estados[i].getNome().equalsIgnoreCase(nome)) {
                 return estados[i].getValor();
             }
@@ -363,22 +339,14 @@ public class MetodosPrincipais {
         return -1;
     }
 
-    //método para exibir todos os estados
-    public static void mostrarEstados() throws IOException {
-        for (int i = 0; i < estados.length; i++) {
-            System.out.println("Estado " + estados[i].getNome() + ":  " + estados[i].getRecompensa());
-        }
-    }
-
-    //método utilizado para excolher o percurso do drone
+    //método utilizado para excolher o percurso
     public static void realizarVigilancia() throws IOException {
-        lerEstados();
-        inicializarTabela();
+        lerEstados(); 
         ArrayList percorrer = new ArrayList<Integer>();
         for (int i = 0; i < estados.length; i++) {
             percorrer.add(i);
         }
-        int ponto = TAMANHO-1;
+        int ponto = TOTALESTADOS - 1;
         String percurso = "";
         Collections.shuffle(percorrer); //embaralha        
         //Escolhe o inicio : origem
@@ -387,8 +355,7 @@ public class MetodosPrincipais {
         //Escolhe o objetivo : destino
         int destino = (int) percorrer.get(ponto);
         ponto--;
-        percurso = percurso + " " + caminho( origem , destino);   
-        System.out.println("++"+ ponto);
+        percurso = percurso + " " + caminho( origem , destino);  
         while (ponto !=-1) {
             origem = destino;
             destino = (int) percorrer.get(ponto);             
