@@ -26,6 +26,7 @@ public class AprendizadoPorReforco {
             System.out.println("\n|---------------------------------------------|");
             System.out.println("|____________ 1 - INICIAR APRENDIZADO __________|");
             System.out.println("|_______________ 2- MOSTRAR PERCURSO_____________|");
+            System.out.println("|________________ 3 - LOG  _____________________|");
             System.out.println("|________________ 0 - SAIR _____________________|");
             System.out.println("|-----------------------------------------------|\n");
             System.out.println("Execulte a sua escolha: ");
@@ -40,7 +41,16 @@ public class AprendizadoPorReforco {
                     break;
                 case 2:
                     if (ok) {
+                        System.out.println("Caminho "+  metodos.caminho(0, 34));
                         metodos.realizarVigilancia();
+                    } else {
+                        System.out.println("Realize o aprendizado!!");
+                    }
+                    break;
+                    case 3:
+                    if (ok) {
+                        System.out.println("Caminho "+  metodos.caminho(0, 34));
+                        metodos.lerLog();
                     } else {
                         System.out.println("Realize o aprendizado!!");
                     }
