@@ -1,4 +1,4 @@
-/*==========================================================//
+﻿/*==========================================================//
  * UNIVERSIDADE FEDERAL DE SERGIPE                         ||
  * CAMPUS ALBERTO DE CARVALHO - ITABAIANA/SE               ||
  * CURSO: SISTEMAS DE INFORMAÇÃO                           ||
@@ -26,7 +26,7 @@ public class MetodosPrincipais {
 
  
     //utilizada para saber a quantidade de estados 
-    public static int TOTALESTADOS = 13;    
+    public static int TOTALESTADOS = 39;    
     //utilizada para saber a quantidade de estados 
     public static int TOTALACOES = 4;
     //utilizada para salvar os estados : nome, valor, e Recompensa.
