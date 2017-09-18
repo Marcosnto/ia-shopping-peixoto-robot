@@ -196,11 +196,20 @@ public class Tela extends JFrame implements ActionListener{
                         }else if (rota[x][0] == 11 && rota[x][1] == 15){
                             direita(1,209);
                             Thread.sleep(1000);
+                        }else if (rota[x][0] == 11 && rota[x][1] == 38){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 11 && rota[x][1] == 39){
+                            direita(1,209);
+                            Thread.sleep(1000);
                         //MOVIMENTAÇÃO (12)
                         }else if (rota[x][0] == 12 && rota[x][1] == 11){
                             direita(1,209);
                             Thread.sleep(1000);
                         }else if (rota[x][0] == 12 && rota[x][1] == 13){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 12 && rota[x][1] == 39){
                             direita(1,209);
                             Thread.sleep(1000);
                         //MOVIMENTAÇÃO (13)
@@ -230,6 +239,9 @@ public class Tela extends JFrame implements ActionListener{
                         }else if (rota[x][0] == 15 && rota[x][1] == 17){
                             direita(1,209);
                             Thread.sleep(1000);
+                        }else if (rota[x][0] == 15 && rota[x][1] == 39){
+                            direita(1,209);
+                            Thread.sleep(1000);
                         //MOVIMENTAÇÃO (16)
                         }else if (rota[x][0] == 16 && rota[x][1] == 1){
                             direita(1,209);
@@ -244,6 +256,9 @@ public class Tela extends JFrame implements ActionListener{
                         }else if (rota[x][0] == 17 && rota[x][1] == 18){
                             direita(1,209);
                             Thread.sleep(1000);
+                        }else if (rota[x][0] == 17 && rota[x][1] == 40){
+                            direita(1,209);
+                            Thread.sleep(1000);
                         //MOVIMENTAÇÃO (18)
                         }else if (rota[x][0] == 18 && rota[x][1] == 17){
                             direita(1,209);
@@ -254,6 +269,9 @@ public class Tela extends JFrame implements ActionListener{
                         }else if (rota[x][0] == 18 && rota[x][1] == 20){
                             direita(1,209);
                             Thread.sleep(1000);
+                        }else if (rota[x][0] == 18 && rota[x][1] == 40){
+                            direita(1,209);
+                            Thread.sleep(1000);
                         //MOVIMENTAÇÃO (19)
                         }else if (rota[x][0] == 19 && rota[x][1] == 18){
                             direita(1,209);
@@ -262,6 +280,9 @@ public class Tela extends JFrame implements ActionListener{
                             direita(1,209);
                             Thread.sleep(1000);
                         }else if (rota[x][0] == 19 && rota[x][1] == 23){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 19 && rota[x][1] == 41){
                             direita(1,209);
                             Thread.sleep(1000);
                         //MOVIMENTAÇÃO (20)
@@ -284,6 +305,9 @@ public class Tela extends JFrame implements ActionListener{
                         }else if (rota[x][0] == 21 && rota[x][1] == 22){
                             direita(1,209);
                             Thread.sleep(1000);
+                        }else if (rota[x][0] == 21 && rota[x][1] == 41){
+                            direita(1,209);
+                            Thread.sleep(1000);
                         //MOVIMENTAÇÃO (22)
                         }else if (rota[x][0] == 22 && rota[x][1] == 21){
                             direita(1,209);
@@ -299,6 +323,9 @@ public class Tela extends JFrame implements ActionListener{
                             direita(1,209);
                             Thread.sleep(1000);
                         }else if (rota[x][0] == 23 && rota[x][1] == 22){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 23 && rota[x][1] == 41){
                             direita(1,209);
                             Thread.sleep(1000);
                         //MOVIMENTAÇÃO (24)
@@ -411,6 +438,43 @@ public class Tela extends JFrame implements ActionListener{
                         }else if (rota[x][0] == 37 && rota[x][1] == 32){
                             direita(1,209);
                             Thread.sleep(1000); 
+                        //MOVIMENTAÇÃO (38)
+                        }else if (rota[x][0] == 38 && rota[x][1] == 40){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 38 && rota[x][1] == 11){
+                            direita(1,209);
+                            Thread.sleep(1000); 
+                        //MOVIMENTAÇÃO (39)
+                        }else if (rota[x][0] == 39 && rota[x][1] == 15){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 39 && rota[x][1] == 11){
+                            direita(1,209);
+                            Thread.sleep(1000); 
+                        }else if (rota[x][0] == 39 && rota[x][1] == 12){
+                            direita(1,209);
+                            Thread.sleep(1000); 
+                        //MOVIMENTAÇÃO (40)
+                        }else if (rota[x][0] == 40 && rota[x][1] == 17){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 40 && rota[x][1] == 38){
+                            direita(1,209);
+                            Thread.sleep(1000); 
+                        }else if (rota[x][0] == 40 && rota[x][1] == 18){
+                            direita(1,209);
+                            Thread.sleep(1000); 
+                        //MOVIMENTAÇÃO (41)
+                        }else if (rota[x][0] == 41 && rota[x][1] == 19){
+                            direita(1,209);
+                            Thread.sleep(1000);
+                        }else if (rota[x][0] == 41 && rota[x][1] == 23){
+                            direita(1,209);
+                            Thread.sleep(1000); 
+                        }else if (rota[x][0] == 41 && rota[x][1] == 21){
+                            direita(1,209);
+                            Thread.sleep(1000); 
                         }
                         Thread.sleep(1300);
                         
@@ -436,10 +500,10 @@ public class Tela extends JFrame implements ActionListener{
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(iconeTitulo);
         
-        setContentPane(new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/Mapa.png"))));
+        setContentPane(new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/Mapa2.png"))));
         setLayout(null);
         
-        M1 = new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/robo.png")));
+        M1 = new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/Quadrado.png")));
         
         setVisible(true);
         add(M1);
@@ -457,7 +521,7 @@ public class Tela extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == iniciar){
-            M1.setBounds(130,625,20,19);
+            M1.setBounds(167,218,20,19);
         }
     }
     
