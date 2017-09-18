@@ -383,9 +383,9 @@ public class MetodosPrincipais {
         }
         return -1;
     }
-    //método utilizado para mostrar o caminho de um ponto origem até um ponto de destino
-
-    public static String caminho(int origem, int destino) throws IOException {
+    
+    //método utilizado para buscar o caminho de um ponto origem até um ponto de destino
+    public static String buscarCaminho(int origem, int destino) throws IOException {
         //ler o arquivo correspondente ao ponto de destino
         lerArquivo(destino);
         String caminho = "";
@@ -422,7 +422,7 @@ public class MetodosPrincipais {
             ponto--;
             int destino = (int) percorrer.get(ponto);
             ponto--;
-            percurso = caminho(origem, destino);            
+            percurso = buscarCaminho(origem, destino);            
             while (ponto != -1) {
                 String parte[] = percurso.split(";");
                 for (int i = 0; i < parte.length; i++) {
@@ -436,7 +436,7 @@ public class MetodosPrincipais {
                 destino = (int) percorrer.get(ponto);
                 Collections.shuffle(percorrer); //embaralha 
                 ponto--;
-                percurso = caminho(origem, destino);
+                percurso = buscarCaminho(origem, destino);
             }
             //o ultimo caminho gerado
             String parte[] = percurso.split(";");
