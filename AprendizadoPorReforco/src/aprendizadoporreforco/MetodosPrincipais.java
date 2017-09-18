@@ -57,26 +57,6 @@ public class MetodosPrincipais {
         System.out.println("FINALIZADO");
     }
 
-    //método utilizado para mostrar o caminho de um ponto origem até um ponto de destino
-    public static String caminho(int origem, int destino) throws IOException {
-        //ler o arquivo correspondente ao ponto de destino
-        lerArquivo(destino);
-        String caminho = "";
-        while (origem != destino) {
-            int estadoAux = -1;
-            double maior = -1;
-            for (int i = 0; i < TOTALACOES; i++) {
-                if (tabela[origem][i].getValorAcao() > maior && tabela[origem][i].getEstado() != -1) {
-                    maior = tabela[origem][i].getValorAcao();
-                    estadoAux = tabela[origem][i].getEstado();
-                }
-            }
-            caminho = caminho + " " + estados[origem].getNome() + "->";
-            origem = estadoAux;
-        }
-        return caminho + estados[destino].getNome();
-    }
-
     //método para zerar os valores das aoes
     public static void zerarTabela() {
         for (int l = 0; l < TOTALESTADOS; l++) {
@@ -259,7 +239,7 @@ public class MetodosPrincipais {
             File f = new File("Log.txt");
             FileWriter fw = new FileWriter(f);
             PrintWriter pw = new PrintWriter(fw);
-            pw.printf("%-130s","--------------------------------------------------- INICIALIZADO O APRENDIZADO -----------------------------------------------");
+            pw.printf("%-130s", "--------------------------------------------------- INICIALIZADO O APRENDIZADO -----------------------------------------------");
             pw.println("");
             for (int estado = 0; estado < TOTALESTADOS; estado++) {
                 lerArquivo(estado);
@@ -274,7 +254,7 @@ public class MetodosPrincipais {
                 for (int i = 0; i < TOTALESTADOS; i++) {
                     pw.printf("%-10s", estados[i].getNome());
                     for (int j = 0; j < TOTALACOES; j++) {
-                       // pw.print(tabela[i][j].getEstado() + ";");//estado para o qual  vai
+                        // pw.print(tabela[i][j].getEstado() + ";");//estado para o qual  vai
                         //pw.print(tabela[i][j].getValorAcao() + ";");//valor da acao
                         if (j == 0) {
                             pw.printf("%-10s%-10s%-10s", "Esquerda", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
@@ -290,11 +270,11 @@ public class MetodosPrincipais {
                     pw.println();
                 }
             }
-            pw.printf("%-130s","--------------------------------------------------------------- FINALIZADO ----------------------------------------------------");
+            pw.printf("%-130s", "--------------------------------------------------------------- FINALIZADO ----------------------------------------------------");
             pw.println("");
-            pw.println("------------------------------------------------ TOTAL DE VEZES QUE EXPLOROU = "+totalExplorar+"  ----------------------------------------");
-            pw.println("------------------------------------------------ TOTAL DE VEZES QUE USUFRUIU = "+totalUsufruir+"  ----------------------------------------");
-            pw.println("------------------------------------------------ TOTAL DE VEZES DE UNICA ESCOLHA = "+unicaEscolha+" -------------------------------------");
+            pw.println("------------------------------------------------ TOTAL DE VEZES QUE EXPLOROU = " + totalExplorar + "  ----------------------------------------");
+            pw.println("------------------------------------------------ TOTAL DE VEZES QUE USUFRUIU = " + totalUsufruir + "  ----------------------------------------");
+            pw.println("------------------------------------------------ TOTAL DE VEZES DE UNICA ESCOLHA = " + unicaEscolha + " -------------------------------------");
             pw.println("-------------------------------------------------------------------------------------------------------------------------------");
             pw.flush();
             pw.close();
@@ -312,7 +292,7 @@ public class MetodosPrincipais {
             int estado = 0;
             int acao = 0;
             while ((linha = br.readLine()) != null) {
-                System.out.println(""+linha);
+                System.out.println("" + linha);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -403,31 +383,92 @@ public class MetodosPrincipais {
         }
         return -1;
     }
+    //método utilizado para mostrar o caminho de um ponto origem até um ponto de destino
 
-    //método utilizado para excolher o percurso
-    public static void realizarVigilancia() throws IOException {
+    public static String caminho(int origem, int destino) throws IOException {
+        //ler o arquivo correspondente ao ponto de destino
+        lerArquivo(destino);
+        String caminho = "";
+        while (origem != destino) {
+            int estadoAux = -1;
+            double maior = -1;
+            for (int i = 0; i < TOTALACOES; i++) {
+                if (tabela[origem][i].getValorAcao() > maior && tabela[origem][i].getEstado() != -1) {
+                    maior = tabela[origem][i].getValorAcao();
+                    estadoAux = tabela[origem][i].getEstado();
+                }
+            }
+            caminho = caminho + "" + estados[origem].getNome() + ";";
+            origem = estadoAux;
+        }
+        return caminho + estados[destino].getNome() + ";";
+    }
+
+    //método utilizado para gerar o Caminho
+    public static void gerarCaminho() throws IOException {
         lerEstados();
         ArrayList percorrer = new ArrayList<Integer>();
-        for (int i = 0; i < estados.length; i++) {
+        for (int i = 0; i < TOTALESTADOS; i++) {
             percorrer.add(i);
         }
-        int ponto = TOTALESTADOS - 1;
-        String percurso = "";
-        Collections.shuffle(percorrer); //embaralha        
-        //Escolhe o inicio : origem
-        int origem = (int) percorrer.get(ponto);
-        ponto--;
-        //Escolhe o objetivo : destino
-        int destino = (int) percorrer.get(ponto);
-        ponto--;
-        percurso = percurso + " " + caminho(origem, destino);
-        while (ponto != -1) {
-            origem = destino;
-            destino = (int) percorrer.get(ponto);
-            Collections.shuffle(percorrer); //embaralha 
+        try {
+            File f = new File("Caminho.txt");
+            FileWriter fw = new FileWriter(f);
+            PrintWriter pw = new PrintWriter(fw);
+            int ponto = TOTALESTADOS - 1;
+            String percurso = "";
+            Collections.shuffle(percorrer); //embaralha  
+            int origem = (int) percorrer.get(ponto);
             ponto--;
-            percurso = percurso + " " + caminho(origem, destino);
+            int destino = (int) percorrer.get(ponto);
+            ponto--;
+            percurso = caminho(origem, destino);            
+            while (ponto != -1) {
+                String parte[] = percurso.split(";");
+                for (int i = 0; i < parte.length; i++) {
+                    if (i + 1 < parte.length) {
+                        pw.print(parte[i] + ";");
+                        pw.print(parte[i + 1] + ";");
+                        pw.println();
+                    }
+                }
+                origem = destino;
+                destino = (int) percorrer.get(ponto);
+                Collections.shuffle(percorrer); //embaralha 
+                ponto--;
+                percurso = caminho(origem, destino);
+            }
+            //o ultimo caminho gerado
+            String parte[] = percurso.split(";");
+            for (int i = 0; i < parte.length; i++) {
+                if (i + 1 < parte.length) {
+                    pw.print(parte[i] + ";");
+                    pw.print(parte[i + 1] + ";");
+                    pw.println();
+                }
+            }
+            pw.flush();
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println("Percurso Gerado : " + percurso);
     }
+    
+    //método para carregar o arquivo do caminho a ser percorrido
+    public static void lerCaminho() throws FileNotFoundException, IOException {
+        try {
+            FileReader fr = new FileReader("Caminho.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String linha;
+
+            while ((linha = br.readLine()) != null) {
+                String parte[] = linha.split(";");
+                System.out.printf("%-10s%-10s","Origem: "+parte[0]," Destino: "+parte[1]);
+                System.out.println();                
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
