@@ -21,7 +21,7 @@ public class Tela extends JFrame implements ActionListener{
         Thread t1 = new Thread() {
             public void run() {
                 for (int i = yInicial; i > yFinal; i--) {
-                    M1.setBounds(M1.getX(), i, 20, 19);
+                    M1.setBounds(M1.getX(), i, 10, 10);
                     try {
                         Thread.sleep(9);
                     } catch (InterruptedException ex) {
@@ -94,10 +94,10 @@ public class Tela extends JFrame implements ActionListener{
                     try {
                         //MOVIMENTAÇÃO (1)
                         if (rota[x][0] == 1 && rota[x][1] == 2) {
-                            descer(3, 125); 
+                            subir(613, 467); 
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 1 && rota[x][1] == 16){
-                            direita(1,209);
+                            direita(120,370);
                             Thread.sleep(1000);  
                         //MOVIMENTAÇÃO (2)    
                         }else if (rota[x][0] == 2 && rota[x][1] == 1){
@@ -516,12 +516,18 @@ public class Tela extends JFrame implements ActionListener{
     
     public static void main(String[] args) {
         Tela tela = new Tela();
+        int [][]matriz = new int[1][2];
+        matriz[0][0] = 1;
+        matriz[0][1] = 2;
+        M1.setBounds(120,613,20,19);
+        subir(613, 467); 
+        
         }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == iniciar){
-            M1.setBounds(167,218,20,19);
+            
         }
     }
     
