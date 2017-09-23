@@ -1,4 +1,4 @@
-﻿/*==========================================================//
+/*==========================================================//
  * UNIVERSIDADE FEDERAL DE SERGIPE                         ||
  * CAMPUS ALBERTO DE CARVALHO - ITABAIANA/SE               ||
  * CURSO: SISTEMAS DE INFORMAÇÃO                           ||
@@ -8,7 +8,8 @@
  * DISCENTE: EDNA DE CARVALHO ANDRADE                      ||
  *           MARCOS NETO SANTOS                            ||
  *           KAIC DE OLIVEIRA BARROS                       ||
- */
+*/
+
 package aprendizadoporreforco;
 
 import java.io.BufferedReader;
@@ -189,22 +190,22 @@ public class MetodosPrincipais {
     //e suas respectivas acoes juntamente qual o estado é direcionado com a mesma 
     //e o valor dela
     public static void mostrarTabela() {
-        System.out.printf("%-10s%-10s%-10s%-10s", "Estado", "Acao", "Destino", "Valor ");
-        System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-        System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-        System.out.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
+        System.out.printf("%-10s", "Estado", "Acao", "Destino", "Valor ");
+        System.out.printf("%-10s", "Acao", "Destino", "Valor ");
+        System.out.printf("%-10s", "Acao", "Destino", "Valor ");
+        System.out.printf("%-10s", "Acao", "Destino", "Valor ");
         System.out.println("");
         for (int i = 0; i < TOTALESTADOS; i++) {
             System.out.printf("%-10s", estados[i].getNome());
             for (int j = 0; j < TOTALACOES; j++) {
                 if (j == 0) {
-                    System.out.printf("%-10s%-10s%-10s", "Esquerda", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                    System.out.printf("%-10s", "Esquerda", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                 } else if (j == 1) {
-                    System.out.printf("%-10s%-10s%-10s", "Direita", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                    System.out.printf("%-10s", "Direita", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                 } else if (j == 2) {
-                    System.out.printf("%-10s%-10s%-10s", "Cima", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                    System.out.printf("%-10s", "Cima", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                 } else if (j == 3) {
-                    System.out.printf("%-10s%-10s%-10s", "Baixo", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                    System.out.printf("%-10s", "Baixo", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                 }
             }
             System.out.println("");
@@ -239,17 +240,17 @@ public class MetodosPrincipais {
             File f = new File("Log.txt");
             FileWriter fw = new FileWriter(f);
             PrintWriter pw = new PrintWriter(fw);
-            pw.printf("%-130s", "--------------------------------------------------- INICIALIZADO O APRENDIZADO -----------------------------------------------");
+            pw.printf("%-130s", "-- INICIALIZADO O APRENDIZADO --");
             pw.println("");
             for (int estado = 0; estado < TOTALESTADOS; estado++) {
                 lerArquivo(estado);
-                pw.println("-------------------------------------------------------------------------------------------------------------------------------");
-                pw.println("------------------------------------------------------ TABELA DO ESTADO : " + estados[estado].getNome() + "   ------------------------------------------------");
-                pw.println("-------------------------------------------------------------------------------------------------------------------------------");
-                pw.printf("%-10s%-10s%-10s%-10s", "Estado", "Acao", "Destino", "Valor ");
-                pw.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-                pw.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
-                pw.printf("%-10s%-10s%-10s", "Acao", "Destino", "Valor ");
+                pw.println("----");
+                pw.println("--TABELA DO ESTADO : " + estados[estado].getNome() + "--");
+                pw.println("-----");
+                pw.printf("%-10s", "Estado", "Acao", "Destino", "Valor ");
+                pw.printf("%-10s", "Acao", "Destino", "Valor ");
+                pw.printf("%-10s", "Acao", "Destino", "Valor ");
+                pw.printf("%-10s", "Acao", "Destino", "Valor ");
                 pw.println();
                 for (int i = 0; i < TOTALESTADOS; i++) {
                     pw.printf("%-10s", estados[i].getNome());
@@ -257,25 +258,25 @@ public class MetodosPrincipais {
                         // pw.print(tabela[i][j].getEstado() + ";");//estado para o qual  vai
                         //pw.print(tabela[i][j].getValorAcao() + ";");//valor da acao
                         if (j == 0) {
-                            pw.printf("%-10s%-10s%-10s", "Esquerda", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                            pw.printf("%-10", "Esquerda", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
 
                         } else if (j == 1) {
-                            pw.printf("%-10s%-10s%-10s", "Direita", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                            pw.printf("%-10", "Direita", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                         } else if (j == 2) {
-                            pw.printf("%-10s%-10s%-10s", "Cima", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                            pw.printf("%-10", "Cima", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                         } else if (j == 3) {
-                            pw.printf("%-10s%-10s%-10s", "Baixo", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
+                            pw.printf("%-10", "Baixo", tabela[i][j].getEstado(), String.format("%.5f", tabela[i][j].getValorAcao()));
                         }
                     }
                     pw.println();
                 }
             }
-            pw.printf("%-130s", "--------------------------------------------------------------- FINALIZADO ----------------------------------------------------");
+            pw.printf("%-10s", "-- FINALIZADO --");
             pw.println("");
-            pw.println("------------------------------------------------ TOTAL DE VEZES QUE EXPLOROU = " + totalExplorar + "  ----------------------------------------");
-            pw.println("------------------------------------------------ TOTAL DE VEZES QUE USUFRUIU = " + totalUsufruir + "  ----------------------------------------");
-            pw.println("------------------------------------------------ TOTAL DE VEZES DE UNICA ESCOLHA = " + unicaEscolha + " -------------------------------------");
-            pw.println("-------------------------------------------------------------------------------------------------------------------------------");
+            pw.println("-- TOTAL DE VEZES QUE EXPLOROU = " + totalExplorar + "--");
+            pw.println("-- TOTAL DE VEZES QUE USUFRUIU = " + totalUsufruir + "--");
+            pw.println("-- TOTAL DE VEZES DE UNICA ESCOLHA = " + unicaEscolha + "--");
+            pw.println("---");
             pw.flush();
             pw.close();
         } catch (IOException e) {
@@ -456,19 +457,7 @@ public class MetodosPrincipais {
     
     //método para carregar o arquivo do caminho a ser percorrido
     public static void lerCaminho() throws FileNotFoundException, IOException {
-        try {
-            FileReader fr = new FileReader("Caminho.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String linha;
-
-            while ((linha = br.readLine()) != null) {
-                String parte[] = linha.split(";");
-                System.out.printf("%-10s%-10s","Origem: "+parte[0]," Destino: "+parte[1]);
-                System.out.println();                
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       
     }
     
 }
