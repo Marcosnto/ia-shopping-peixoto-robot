@@ -49,7 +49,7 @@ public class AprendizadoPorReforco {
                     break;
                 case 3:
                     if (ok) {
-                        metodos.lerCaminho();
+                        //metodos.lerCaminho();
                     } else {
                         System.out.println("Realize o aprendizado!!");
                     }

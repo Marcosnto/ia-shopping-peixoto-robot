@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class Tela extends JFrame implements ActionListener  {
@@ -28,6 +30,7 @@ public class Tela extends JFrame implements ActionListener  {
     MetodosPrincipais metodos = new MetodosPrincipais();
     JFrame log = new JFrame();
     JTextArea showLog = new JTextArea();
+    JScrollPane saidaTXT = new JScrollPane();
     public static Thread T1 = new Thread();
     
     public Tela() {
@@ -52,13 +55,17 @@ public class Tela extends JFrame implements ActionListener  {
         add(parar).setBounds(420, 55, 165, 30);
         add(aprender).setBounds(420, 90, 165, 30);
         add(mostrar).setBounds(420, 125, 165, 30);
-
-        log.setSize(600, 415);
-        showLog.setAutoscrolls(rootPaneCheckingEnabled);
-        showLog.setPreferredSize(new Dimension(415, 415));
-        showLog.setLineWrap(true);
-        showLog.setWrapStyleWord(true);
-        log.add(showLog);
+        
+        log.setSize(700, 682);
+       // showLog.setAutoscrolls(rootPaneCheckingEnabled);
+        //showLog.setPreferredSize(new Dimension(500, 500));
+       // showLog.setLineWrap(true);
+        showLog.setEditable(false);
+       // showLog.setWrapStyleWord(true);
+        //log.add(showLog);
+        log.add(saidaTXT);
+        saidaTXT.setViewportView(showLog);        
+        log.setResizable(false);
 
         iniciar.addActionListener(this);
         parar.addActionListener(this);
@@ -91,8 +98,10 @@ public class Tela extends JFrame implements ActionListener  {
         }
 
         if (e.getSource() == aprender) {
-            try {
-                metodos.aprender();
+            try {              
+                JOptionPane.showMessageDialog(null, "APRENDIZADO INICIALIZADO. POR FAVOR AGUARDE!");
+                metodos.aprender();                
+                JOptionPane.showMessageDialog(null, "APRENDIZADO FINALIZADO!");
             } catch (IOException ex) {
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -101,15 +110,12 @@ public class Tela extends JFrame implements ActionListener  {
         if (e.getSource() == mostrar) {
             log.setVisible(true);
             try {
-                System.out.println("teste");
+                JOptionPane.showMessageDialog(null, "LENDO ARQUIVO!!");
                 FileReader fr = new FileReader("Log.txt");
                 BufferedReader br = new BufferedReader(fr);
                 String linha;
-                int estado = 0;
-                int acao = 0;
                 while ((linha = br.readLine()) != null) {
-                    System.out.println("" + linha);
-                    showLog.append(linha);
+                    showLog.setText(showLog.getText() + linha + "\n");
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
@@ -119,7 +125,7 @@ public class Tela extends JFrame implements ActionListener  {
             T1.stop();
         }
     }
-
+    
     public static void subir(int yInicial, int yFinal) {
         Thread t1 = new Thread() {
             public void run() {
@@ -188,9 +194,7 @@ public class Tela extends JFrame implements ActionListener  {
             }
         };
         t1.start();
-    }
-   
-   
+    }  
    
     public static void movimentacao(int[][] rota) {
         T1 = new Thread() {
