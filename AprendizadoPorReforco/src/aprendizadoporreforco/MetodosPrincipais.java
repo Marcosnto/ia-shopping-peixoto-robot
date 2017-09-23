@@ -409,7 +409,7 @@ public class MetodosPrincipais {
     public static void gerarCaminho() throws IOException {
         lerEstados();
         ArrayList percorrer = new ArrayList<Integer>();
-        for (int i = 0; i < TOTALESTADOS; i++) {
+        for (int i = 1; i < TOTALESTADOS; i++) {
             percorrer.add(i);
         }
         try {
@@ -417,9 +417,8 @@ public class MetodosPrincipais {
             FileWriter fw = new FileWriter(f);
             PrintWriter pw = new PrintWriter(fw);
             int ponto = TOTALESTADOS - 1;
-            String percurso = "";
-            Collections.shuffle(percorrer); //embaralha  
-            int origem = (int) percorrer.get(ponto);
+            String percurso = ""; 
+            int origem = 0 ;//sempre iniciar do ponto 1
             ponto--;
             int destino = (int) percorrer.get(ponto);
             ponto--;
@@ -439,7 +438,6 @@ public class MetodosPrincipais {
                 ponto--;
                 percurso = buscarCaminho(origem, destino);
             }
-            //o ultimo caminho gerado
             String parte[] = percurso.split(";");
             for (int i = 0; i < parte.length; i++) {
                 if (i + 1 < parte.length) {

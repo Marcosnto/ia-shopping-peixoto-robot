@@ -18,7 +18,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
-public class Tela extends JFrame implements ActionListener {
+public class Tela extends JFrame implements ActionListener  {
 
     JButton iniciar = new JButton("Iniciar");
     JButton parar = new JButton("Parar");
@@ -199,100 +199,100 @@ public class Tela extends JFrame implements ActionListener {
                     try {
                         //MOVIMENTAÇÃO (1)
                         if (rota[x][0] == 1 && rota[x][1] == 2) {
-                            subir(613, 467);
+                            subir(613, 474);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == -1 && rota[x][1] == -1) {
                             break;
                         } else if (rota[x][0] == 1 && rota[x][1] == 16) {
-                            direita(120, 370);
+                            direita(120, 372);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (2)    
                         } else if (rota[x][0] == 2 && rota[x][1] == 1) {
-                            descer(467, 613);
+                            descer(474, 613);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 2 && rota[x][1] == 3) {
-                            direita(120, 134);
+                            direita(100, 137);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 2 && rota[x][1] == 4) {
-                            esquerda(120, 98);
+                            esquerda(120, 100);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (3)
                         } else if (rota[x][0] == 3 && rota[x][1] == 2) {
-                            esquerda(134, 120);
+                            esquerda(137, 120);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 3 && rota[x][1] == 6) {
-                            subir(476, 365);
+                            subir(474, 373);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (4)
                         } else if (rota[x][0] == 4 && rota[x][1] == 2) {
-                            direita(98, 120);
+                            direita(100, 120);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 4 && rota[x][1] == 5) {
-                            subir(467, 363);
+                            subir(474, 370);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (5)
                         } else if (rota[x][0] == 5 && rota[x][1] == 4) {
-                            descer(363, 467);
+                            descer(370, 474);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 5 && rota[x][1] == 6) {
-                            direita(98, 138);
+                            direita(100, 142);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (6)
                         } else if (rota[x][0] == 6 && rota[x][1] == 5) {
-                            esquerda(138, 98);
+                            esquerda(142, 100);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 6 && rota[x][1] == 3) {
-                            descer(365, 467);
+                            descer(373, 474);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 6 && rota[x][1] == 7) {
-                            subir(365, 345);
+                            subir(373, 344);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 6 && rota[x][1] == 9) {
-                            direita(136, 220);
+                            direita(142, 225);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (7)
                         } else if (rota[x][0] == 7 && rota[x][1] == 6) {
-                            descer(345, 365);
+                            descer(344, 373);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 7 && rota[x][1] == 8) {
-                            direita(138, 220);
+                            direita(142, 225);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (8)
                         } else if (rota[x][0] == 8 && rota[x][1] == 7) {
-                            esquerda(220, 138);
+                            esquerda(225, 142);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 8 && rota[x][1] == 9) {
-                            descer(345, 368);
+                            descer(344, 371);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 8 && rota[x][1] == 10) {
-                            direita(220, 260);
+                            direita(225, 263);
                             Thread.sleep(100);
                         } else if (rota[x][0] == 8 && rota[x][1] == 21) {
-                            subir(345, 208);
+                            subir(344, 218);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (9)
                         } else if (rota[x][0] == 9 && rota[x][1] == 6) {
-                            esquerda(220, 138);
+                            esquerda(225, 142);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 9 && rota[x][1] == 8) {
                             subir(368, 354);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 9 && rota[x][1] == 12) {
-                            direita(220, 370);
+                            direita(225, 372);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (10)
                         } else if (rota[x][0] == 10 && rota[x][1] == 8) {
-                            esquerda(260, 220);
+                            esquerda(263, 225);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 10 && rota[x][1] == 11) {
-                            direita(260, 370);
+                            direita(263, 372);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 10 && rota[x][1] == 20) {
-                            subir(340, 212);
+                            subir(344, 218);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (11)
                         } else if (rota[x][0] == 11 && rota[x][1] == 10) {
-                            esquerda(370, 260);
+                            esquerda(372, 263);
                             Thread.sleep(1000);
                         }/*else if (rota[x][0] == 11 && rota[x][1] == 12){
                             direita(1,209);
@@ -301,221 +301,215 @@ public class Tela extends JFrame implements ActionListener {
                             direita(1,209);
                             Thread.sleep(1000);
                         }*/ else if (rota[x][0] == 11 && rota[x][1] == 38) {
-                            direita(370, 495);
+                            direita(372, 496);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 11 && rota[x][1] == 39) {
-                            descer(340, 358);
+                            descer(344, 358);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (12)
                         } else if (rota[x][0] == 12 && rota[x][1] == 9) {
-                            esquerda(370, 220);
+                            esquerda(372, 225);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 12 && rota[x][1] == 13) {
-                            descer(370, 442);
+                            descer(370, 450);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 12 && rota[x][1] == 39) {
                             subir(370, 358);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (13)
                         } else if (rota[x][0] == 13 && rota[x][1] == 12) {
-                            subir(442, 370);
+                            subir(450, 370);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 13 && rota[x][1] == 14) {
-                            direita(370, 515);
+                            direita(372, 520);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 13 && rota[x][1] == 16) {
-                            descer(442, 610);
+                            descer(450, 611);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (14)
                         } else if (rota[x][0] == 14 && rota[x][1] == 13) {
-                            esquerda(515, 370);
+                            esquerda(520, 372);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 14 && rota[x][1] == 15) {
-                            subir(442, 350);
+                            subir(450, 358);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (15)
                         } else if (rota[x][0] == 15 && rota[x][1] == 14) {
-                            descer(350, 442);
+                            descer(358, 450);
                             Thread.sleep(1000);
                         }/*else if (rota[x][0] == 15 && rota[x][1] == 11){
                             direita(1,209);
                             Thread.sleep(1000);
                         }*/ else if (rota[x][0] == 15 && rota[x][1] == 17) {
-                            subir(350, 205);
+                            subir(358, 218);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 15 && rota[x][1] == 38) {
-                            esquerda(512, 495);
+                            esquerda(520, 496);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (16)
                         } else if (rota[x][0] == 16 && rota[x][1] == 1) {
-                            esquerda(370, 120);
+                            esquerda(372, 120);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 16 && rota[x][1] == 13) {
-                            subir(610, 442);
+                            subir(611, 450);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (17)
                         } else if (rota[x][0] == 17 && rota[x][1] == 15) {
-                            descer(205, 350);
+                            descer(218, 358);
                             Thread.sleep(1000);
-                        }/*else if (rota[x][0] == 17 && rota[x][1] == 18){
-                            direita(1,209);
-                            Thread.sleep(1000);
-                        }*/ else if (rota[x][0] == 17 && rota[x][1] == 40) {
-                            esquerda(512, 497);
+                        }else if (rota[x][0] == 17 && rota[x][1] == 40) {
+                            esquerda(518, 496);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (18)
-                        }/*else if (rota[x][0] == 18 && rota[x][1] == 17){
-                            direita(1,209);
-                            Thread.sleep(1000);
-                        }*/ else if (rota[x][0] == 18 && rota[x][1] == 19) {
-                            subir(209, 193);
+                        }else if (rota[x][0] == 18 && rota[x][1] == 19) {
+                            subir(218, 198);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 18 && rota[x][1] == 20) {
-                            esquerda(310, 260);
+                            esquerda(314, 263);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 18 && rota[x][1] == 40) {
-                            direita(310, 497);
+                            direita(314, 496);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (19)
                         } else if (rota[x][0] == 19 && rota[x][1] == 18) {
-                            descer(193, 209);
+                            descer(198, 218);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 19 && rota[x][1] == 32) {
-                            subir(193, 143);
+                            subir(198, 143);
                             Thread.sleep(1000);
                         }/*else if (rota[x][0] == 19 && rota[x][1] == 23){
                             direita(1,209);
                             Thread.sleep(1000);
                         }*/ else if (rota[x][0] == 19 && rota[x][1] == 41) {
-                            esquerda(308, 225);
+                            esquerda(314, 225);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (20)
                         } else if (rota[x][0] == 20 && rota[x][1] == 18) {
-                            direita(260, 310);
+                            direita(263, 314);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 20 && rota[x][1] == 21) {
-                            esquerda(260, 220);
+                            esquerda(263, 225);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 20 && rota[x][1] == 10) {
-                            descer(212, 340);
+                            descer(218, 344);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (21)
                         } else if (rota[x][0] == 21 && rota[x][1] == 8) {
-                            descer(208, 345);
+                            descer(218, 344);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 21 && rota[x][1] == 20) {
-                            esquerda(220, 260);
+                            esquerda(225, 263);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 21 && rota[x][1] == 22) {
-                            esquerda(220, 165);
+                            esquerda(225, 165);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 21 && rota[x][1] == 41) {
-                            subir(208, 200);
+                            subir(218, 198);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (22)
                         } else if (rota[x][0] == 22 && rota[x][1] == 21) {
-                            direita(165, 220);
+                            direita(165, 225);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 22 && rota[x][1] == 23) {
-                            subir(212, 200);
+                            subir(217, 198);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 22 && rota[x][1] == 24) {
-                            esquerda(165, 120);
+                            esquerda(165, 122);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (23)
                         }/*else if (rota[x][0] == 23 && rota[x][1] == 19){
                             direita(1,209);
                             Thread.sleep(1000);
                         }*/ else if (rota[x][0] == 23 && rota[x][1] == 22) {
-                            descer(200, 212);
+                            descer(198, 217);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 23 && rota[x][1] == 41) {
                             esquerda(165, 225);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (24)
                         } else if (rota[x][0] == 24 && rota[x][1] == 22) {
-                            esquerda(120, 165);
+                            esquerda(122, 165);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 24 && rota[x][1] == 25) {
-                            subir(208, 195);
+                            subir(210, 192);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 24 && rota[x][1] == 26) {
-                            esquerda(120, 82);
+                            esquerda(122, 82);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (25)
                         } else if (rota[x][0] == 25 && rota[x][1] == 24) {
-                            descer(195, 208);
+                            descer(192, 210);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 25 && rota[x][1] == 27) {
-                            esquerda(120, 82);
+                            esquerda(122, 82);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (26)
                         } else if (rota[x][0] == 26 && rota[x][1] == 24) {
-                            direita(82, 120);
+                            direita(82, 122);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 26 && rota[x][1] == 28) {
-                            subir(205, 192);
+                            subir(206, 204);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 26 && rota[x][1] == 27) {
-                            subir(205, 192);
+                            subir(206, 192);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (27)
                         } else if (rota[x][0] == 27 && rota[x][1] == 25) {
-                            direita(82, 120);
+                            direita(82, 122);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 27 && rota[x][1] == 26) {
-                            descer(192, 205);
+                            descer(192, 206);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 27 && rota[x][1] == 29) {
-                            esquerda(82, 46);
+                            esquerda(82, 50);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (28)
                         } else if (rota[x][0] == 28 && rota[x][1] == 29) {
-                            subir(199, 185);
+                            subir(204, 185);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 28 && rota[x][1] == 26) {
-                            direita(45, 82);
+                            direita(50, 82);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 28 && rota[x][1] == 31) {
-                            esquerda(45, 2);
+                            esquerda(50, 1);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (29)
                         } else if (rota[x][0] == 29 && rota[x][1] == 27) {
-                            direita(46, 82);
+                            direita(50, 82);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 29 && rota[x][1] == 28) {
-                            descer(185, 199);
+                            descer(185, 204);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 29 && rota[x][1] == 30) {
-                            esquerda(46, 2);
+                            esquerda(50, 1);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (30)
                         } else if (rota[x][0] == 30 && rota[x][1] == 29) {
-                            direita(2, 46);
+                            direita(1, 50);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 30 && rota[x][1] == 31) {
-                            descer(185, 199);
+                            descer(185, 204);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (31)
                         } else if (rota[x][0] == 31 && rota[x][1] == 30) {
-                            subir(199, 185);
+                            subir(204, 185);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 31 && rota[x][1] == 28) {
-                            direita(2, 45);
+                            direita(1, 204);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (32)
                         } else if (rota[x][0] == 32 && rota[x][1] == 19) {
-                            descer(143, 193);
+                            descer(143, 198);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 32 && rota[x][1] == 33) {
-                            esquerda(310, 175);
+                            esquerda(314, 175);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 32 && rota[x][1] == 37) {
-                            subir(143, 32);
+                            subir(143, 31);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (33)
                         } else if (rota[x][0] == 33 && rota[x][1] == 32) {
-                            direita(175, 310);
+                            direita(175, 314);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 33 && rota[x][1] == 34) {
                             subir(143, 55);
@@ -528,7 +522,7 @@ public class Tela extends JFrame implements ActionListener {
                             esquerda(175, 120);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 34 && rota[x][1] == 36) {
-                            subir(55, 32);
+                            subir(55, 31);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (35)
                         } else if (rota[x][0] == 35 && rota[x][1] == 34) {
@@ -536,57 +530,57 @@ public class Tela extends JFrame implements ActionListener {
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (36)
                         } else if (rota[x][0] == 36 && rota[x][1] == 34) {
-                            descer(32, 55);
+                            descer(31, 55);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 36 && rota[x][1] == 37) {
-                            direita(175, 310);
+                            direita(175, 313);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (37)
                         } else if (rota[x][0] == 37 && rota[x][1] == 36) {
-                            esquerda(310, 175);
+                            esquerda(313, 175);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 37 && rota[x][1] == 32) {
-                            descer(32, 143);
+                            descer(31, 143);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (38)
                         } else if (rota[x][0] == 38 && rota[x][1] == 40) {
-                            subir(344, 214);
+                            subir(344, 218);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 38 && rota[x][1] == 15) {
-                            direita(495, 512);
+                            direita(496, 520);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 38 && rota[x][1] == 11) {
-                            esquerda(495, 370);
+                            esquerda(496, 372);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (39)
                         }/*else if (rota[x][0] == 39 && rota[x][1] == 15){
                             direita(1,209);
                             Thread.sleep(1000);
                         }*/ else if (rota[x][0] == 39 && rota[x][1] == 11) {
-                            subir(358, 340);
+                            subir(358, 344);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 39 && rota[x][1] == 12) {
                             descer(358, 370);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (40)
                         } else if (rota[x][0] == 40 && rota[x][1] == 17) {
-                            direita(497, 512);
+                            direita(496, 518);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 40 && rota[x][1] == 38) {
-                            descer(214, 344);
+                            descer(218, 344);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 40 && rota[x][1] == 18) {
-                            esquerda(497, 310);
+                            esquerda(496, 314);
                             Thread.sleep(1000);
                             //MOVIMENTAÇÃO (41)
                         } else if (rota[x][0] == 41 && rota[x][1] == 19) {
-                            direita(225, 308);
+                            direita(225, 314);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 41 && rota[x][1] == 23) {
                             esquerda(225, 165);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 41 && rota[x][1] == 21) {
-                            descer(200, 208);
+                            descer(198, 218);
                             Thread.sleep(1000);
                         }
                         Thread.sleep(1300);
@@ -604,6 +598,6 @@ public class Tela extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         Tela tela = new Tela();
-        M1.setBounds(372, 370, 20, 19);
+        M1.setBounds(120, 474, 20, 19);
     }
 }
