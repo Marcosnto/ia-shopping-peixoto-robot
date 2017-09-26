@@ -1,0 +1,8 @@
+Os Arquivos: 
+  -ACOES
+  -ESTADOS 
+
+Não podem ser deletados da pasta ''AprendizadoPorReforco'', pois 
+o funcionamento da aplicação depende deles. 
+
+Caso sejam deletados há cópia de ambos na pasta ''Material de Apoio''

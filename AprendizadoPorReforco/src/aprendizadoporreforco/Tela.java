@@ -44,7 +44,7 @@ public class Tela extends JFrame implements ActionListener  {
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(iconeTitulo);
 
-        setContentPane(new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/Mapa2.png"))));
+        setContentPane(new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/ImagemFinal.png"))));
         setLayout(null);
 
         M1 = new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/Quadrado.png")));
@@ -56,13 +56,8 @@ public class Tela extends JFrame implements ActionListener  {
         add(aprender).setBounds(420, 90, 165, 30);
         add(mostrar).setBounds(420, 125, 165, 30);
         
-        log.setSize(700, 682);
-       // showLog.setAutoscrolls(rootPaneCheckingEnabled);
-        //showLog.setPreferredSize(new Dimension(500, 500));
-       // showLog.setLineWrap(true);
+        log.setSize(625, 682);
         showLog.setEditable(false);
-       // showLog.setWrapStyleWord(true);
-        //log.add(showLog);
         log.add(saidaTXT);
         saidaTXT.setViewportView(showLog);        
         log.setResizable(false);
@@ -91,6 +86,7 @@ public class Tela extends JFrame implements ActionListener  {
                 }
                 matriz[L][0] = -1;
                 matriz[L][1] = -1;
+                fr.close();
                 movimentacao(matriz);
             } catch (IOException f) {
                 f.printStackTrace();
@@ -99,9 +95,10 @@ public class Tela extends JFrame implements ActionListener  {
 
         if (e.getSource() == aprender) {
             try {              
-                JOptionPane.showMessageDialog(null, "APRENDIZADO INICIALIZADO. POR FAVOR AGUARDE!");
+                JOptionPane.showMessageDialog(null, "Aprendizado inicializado. Por favor, aguarde.!");
                 metodos.aprender();                
-                JOptionPane.showMessageDialog(null, "APRENDIZADO FINALIZADO!");
+                JOptionPane.showMessageDialog(null, "Aprendizado concluido com sucesso!");
+                metodos.gerarCaminho();
             } catch (IOException ex) {
                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -110,7 +107,7 @@ public class Tela extends JFrame implements ActionListener  {
         if (e.getSource() == mostrar) {
             log.setVisible(true);
             try {
-                JOptionPane.showMessageDialog(null, "LENDO ARQUIVO!!");
+                JOptionPane.showMessageDialog(null, "Lendo arquivo, por favor, aguarde.");
                 FileReader fr = new FileReader("Log.txt");
                 BufferedReader br = new BufferedReader(fr);
                 String linha;
@@ -123,13 +120,17 @@ public class Tela extends JFrame implements ActionListener  {
         }
         if (e.getSource() == parar) {
             T1.stop();
+            setVisible(false);
+            Tela.main(new String[0]);
+            JOptionPane.showMessageDialog(null, "Operação cancelada." );
+                    
         }
     }
     
     public static void subir(int yInicial, int yFinal) {
         Thread t1 = new Thread() {
             public void run() {
-                for (int i = yInicial; i > yFinal; i--) {
+                for (int i = yInicial; i >= yFinal; i--) {
                     M1.setBounds(M1.getX(), i, 10, 10);
                     try {
                         Thread.sleep(9);
@@ -146,8 +147,8 @@ public class Tela extends JFrame implements ActionListener  {
     public static void descer(int yInicial, int yFinal) {
         Thread t1 = new Thread() {
             public void run() {
-                for (int i = yInicial; i < yFinal; i++) {
-                    M1.setBounds(M1.getX(), i, 20, 19);
+                for (int i = yInicial; i <= yFinal; i++) {
+                    M1.setBounds(M1.getX(), i, 10, 10);
                     try {
                         Thread.sleep(9);
                     } catch (InterruptedException ex) {
@@ -164,8 +165,8 @@ public class Tela extends JFrame implements ActionListener  {
 
         Thread t1 = new Thread() {
             public void run() {
-                for (int i = xInicial; i < xFinal; i++) {
-                    M1.setBounds(i, M1.getY(), 20, 19);
+                for (int i = xInicial; i <= xFinal; i++) {
+                    M1.setBounds(i, M1.getY(), 10, 10);
                     try {
                         Thread.sleep(9);
                     } catch (InterruptedException ex) {
@@ -182,8 +183,8 @@ public class Tela extends JFrame implements ActionListener  {
 
         Thread t1 = new Thread() {
             public void run() {
-                for (int i = xInicial; i > xFinal; i--) {
-                    M1.setBounds(i, M1.getY(), 20, 19);
+                for (int i = xInicial; i >= xFinal; i--) {
+                    M1.setBounds(i, M1.getY(), 10, 10);
                     try {
                         Thread.sleep(9);
                     } catch (InterruptedException ex) {
@@ -279,7 +280,7 @@ public class Tela extends JFrame implements ActionListener  {
                             esquerda(225, 142);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 9 && rota[x][1] == 8) {
-                            subir(368, 354);
+                            subir(371, 344);
                             Thread.sleep(1000);
                         } else if (rota[x][0] == 9 && rota[x][1] == 12) {
                             direita(225, 372);
@@ -602,6 +603,6 @@ public class Tela extends JFrame implements ActionListener  {
 
     public static void main(String[] args) {
         Tela tela = new Tela();
-        M1.setBounds(120, 474, 20, 19);
+        M1.setBounds(120, 613, 20, 19);
     }
 }

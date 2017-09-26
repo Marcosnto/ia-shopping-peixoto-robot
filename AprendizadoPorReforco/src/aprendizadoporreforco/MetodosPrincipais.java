@@ -5,7 +5,7 @@
  * DISCIPLINA: INTELIGÊNCIA ARTIFICIAL                     ||
  * TURMA: 2017.01                                          ||
  * DOCENTE: DR. ALCIDES XAVIER BENICASA                    ||
- * DISCENTE: EDNA DE CARVALHO ANDRADE                      ||
+ * DISCENTE: EDNA DE CARVALH0O ANDRADE                      ||
  *           MARCOS NETO SANTOS                            ||
  *           KAIC DE OLIVEIRA BARROS                       ||
  */
@@ -84,7 +84,7 @@ public class MetodosPrincipais {
         int x = 0;
         Random seleciona = new Random();
         int estadoAtual;
-        while (x < 50000) { //enquanto eu não chegar o total de vezes ao destino            
+        while (x < 10000) { //enquanto eu não chegar o total de vezes ao destino            
             estadoAtual = seleciona.nextInt(TOTALESTADOS); //Escolhe o estado aleatoriamente
             while (estadoAtual != destino) {
                 int proximoEstado = -1;
@@ -292,6 +292,7 @@ public class MetodosPrincipais {
             while ((linha = br.readLine()) != null) {
                 System.out.println("" + linha);
             }
+            fr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -322,6 +323,7 @@ public class MetodosPrincipais {
                 estado++;
                 acao = 0;
             }
+            fr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -340,6 +342,7 @@ public class MetodosPrincipais {
                 estados[x] = new Estado(parte[0], x, 0);
                 x++;
             }
+            fr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -367,6 +370,7 @@ public class MetodosPrincipais {
                 estado++;
                 acao = 0;
             }
+            fr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
