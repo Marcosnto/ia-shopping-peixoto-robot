@@ -34,7 +34,7 @@ public class Tela extends JFrame implements ActionListener  {
     public static Thread T1 = new Thread();
     
     public Tela() {
-        setTitle("RobôShopping");
+        setTitle("RobôPeixoto");
         setSize(625, 682);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -44,7 +44,7 @@ public class Tela extends JFrame implements ActionListener  {
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(iconeTitulo);
 
-        setContentPane(new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/ImagemFinal.png"))));
+        setContentPane(new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/ImagemF.png"))));
         setLayout(null);
 
         M1 = new JLabel(new ImageIcon(ClassLoader.getSystemResource("Imagens/Quadrado.png")));
