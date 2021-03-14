@@ -14,4 +14,4 @@ Foi utilizado como ambiente de simulação o shopping Peixoto (Itabaiana - Sergi
   <li><a href="https://www.linkedin.com/in/edna-carvalho-00a4b895/">Edna Carvalho</a></li>
   <li><a href="https://www.linkedin.com/in/kaic-de-oliveira-barros-286723b1/">Kaic Barros</a></li>
   <li><a href="https://www.linkedin.com/in/marcosnto/">Marcos Neto</a></li>
-<ul>
+</ul>
